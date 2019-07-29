@@ -2,7 +2,7 @@
 /**
  * Class SampleTest
  *
- * @package Tilecloud_Blocks
+ * @package Geolonia_Blocks
  */
 
 /**

@@ -9,7 +9,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'tilecloud-blocks',
+				textdomain: 'geolonia-blocks',
 			},
 			update_all_domains: {
 				options: {
@@ -32,8 +32,8 @@ module.exports = function( grunt ) {
 				options: {
 					domainPath: '/languages',
 					exclude: [ '\.git/*', 'bin/*', 'node_modules/*', 'tests/*' ],
-					mainFile: 'tilecloud-blocks.php',
-					potFilename: 'tilecloud-blocks.pot',
+					mainFile: 'geolonia-blocks.php',
+					potFilename: 'geolonia-blocks.pot',
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true

@@ -11,7 +11,7 @@ export const save = ({ attributes }) => {
   return (
     <div
 		style={{width: '100%', height: 500}}
-		className={'tilecloud'}
+		className={'geolonia'}
 		data-lat={50}
 		data-log={123}
 		data-zoom={2}

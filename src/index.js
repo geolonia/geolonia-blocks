@@ -1,8 +1,8 @@
 import { edit, save } from './components'
 const { blocks } = window.wp
 
-blocks.registerBlockType('tilecloud/basic', {
-  title: 'TileCloud/Basic',
+blocks.registerBlockType('geolonia/basic', {
+  title: 'Geolonia/Basic',
   icon: 'format-image',
   category: 'common',
   attributes: {
