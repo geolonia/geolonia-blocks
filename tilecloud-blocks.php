@@ -16,7 +16,7 @@
 add_action( 'wp_footer', function() {
 	$api_key = esc_attr( 'YOUR-API-KEY' );
 	?>
-		<script type="text/javascript" src="https://api.geolonia.com/v1/embed?geolonia-api-key=<?php echo $api_key; ?>"></script>
+		<script type="text/javascript" src="https://cdn.geolonia.com/v1/embed?geolonia-api-key=<?php echo $api_key; ?>"></script>
 	<?php
 } );
 
