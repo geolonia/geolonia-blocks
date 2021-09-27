@@ -28,6 +28,7 @@ export default function Edit() {
 				data-lng="135.4807895"
 				data-zoom="18.57"
 				data-style="geolonia/basic"
+				data-pitch="0"
 			>株式会社Geolonia</div>
 		</div>
 	);
