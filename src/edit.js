@@ -1,12 +1,15 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl, TextControl } from '@wordpress/components';
-import { useRef, useEffect } from '@wordpress/element';
+import { useRef, useEffect, useState } from '@wordpress/element';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
 	const { lat, lng, zoom, style, pitch, description } = attributes;
-
+	const [ mapObject, setMapObject ] = useState();
+	const [ markerObject, setMarkerObject ] = useState();
+	const [ lng, setLng ] = useState(attributes.lng);
+	const [ lat, setLat ] = useState(attributes.lat);
 	const mapNode = useRef(null);
 
 	useEffect(() => {
@@ -15,11 +18,32 @@ export default function Edit({ attributes, setAttributes }) {
 		}
 
 		const { geolonia } = window;
-		new geolonia.Map({
+		const map = new geolonia.Map({
 			container: mapNode.current,
 		});
 
-	}, [mapNode])
+		let marker;
+		const markerColor = '#E4402F';
+		if (description) {
+			const popup = new window.geolonia.Popup({ offset: [0, -25] }).setHTML(description);
+			marker = new window.geolonia.Marker({ color: markerColor }).setLngLat([lng, lat]).addTo(map).setPopup(popup);
+			marker.getElement().classList.add('geolonia-clickable-marker');
+		} else {
+			marker = new window.geolonia.Marker({ color: markerColor }).setLngLat([lng, lat]).addTo(map);
+		}
+
+		map.on('load', function() {
+			setMapObject(map);
+			setMarkerObject(marker);
+
+			map.on('move', function() {
+				const center = map.getCenter().toArray();
+				const zoom = map.getZoom().toFixed(2);
+				marker.setLngLat(center);
+			})
+		})
+
+	}, [mapNode, description])
 
 	return (
 		<>
@@ -37,7 +61,10 @@ export default function Edit({ attributes, setAttributes }) {
 					<SelectControl
 						label={__('Map Style', 'geolonia-map-blocks')}
 						value={style}
-						onChange={(value) => setAttributes({ style: value })}
+						onChange={(value) => {
+							setAttributes({ style: value })
+							mapObject.setStyle(`https://cdn.geolonia.com/style/${value}/ja.json`);
+						}}
 						options={[
 							{
 								value: 'geolonia/basic',
@@ -70,6 +97,8 @@ export default function Edit({ attributes, setAttributes }) {
 						value={lat}
 						onChange={(value) => {
 							setAttributes({ lat: value });
+							markerObject.setLngLat([lng, value])
+							mapObject.setCenter([lng, value])
 						}}
 						min="-90"
 						max="90"
@@ -80,6 +109,8 @@ export default function Edit({ attributes, setAttributes }) {
 						value={lng}
 						onChange={(value) => {
 							setAttributes({ lng: value });
+							markerObject.setLngLat([value, lat])
+							mapObject.setCenter([value, lat])
 						}}
 						min="-180"
 						max="180"
@@ -90,15 +121,18 @@ export default function Edit({ attributes, setAttributes }) {
 						value={zoom}
 						onChange={(value) => {
 							setAttributes({ zoom: value });
+							mapObject.setZoom(value);
 						}}
 						min="0"
 						max="24"
+						step="0.001"
 					/>
 					<RangeControl
 						label={__('Pitch', 'geolonia-map-blocks')}
 						value={pitch}
 						onChange={(value) => {
 							setAttributes({ pitch: value });
+							mapObject.setPitch(value);
 						}}
 						min="0"
 						max="60"
@@ -114,7 +148,8 @@ export default function Edit({ attributes, setAttributes }) {
 					data-zoom={zoom}
 					data-style={style}
 					data-pitch={pitch}
-				>{description}</div>
+					data-marker="off"
+				/>
 			</div>
 		</>
 	);

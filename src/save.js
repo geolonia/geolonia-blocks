@@ -8,10 +8,10 @@ export default function save(props) {
 		<div {...useBlockProps.save()}>
 			<div
 				className="geolonia"
+				data-style={style}
 				data-lat={lat}
 				data-lng={lng}
 				data-zoom={zoom}
-				data-style={style}
 				data-pitch={pitch}
 			>{description}</div>
 		</div>
