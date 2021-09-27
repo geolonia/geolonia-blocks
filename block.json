@@ -5,11 +5,37 @@
 	"title": "Geolonia Map Blocks",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"description": "Add a simple map.",
 	"supports": {
 		"html": false
 	},
 	"textdomain": "geolonia-map-blocks",
+	"attributes": {
+		"lat": {
+			"type": "number",
+			"default": 0
+		},
+		"lng": {
+			"type": "number",
+			"default": 0
+		},
+		"zoom": {
+			"type": "number",
+			"default": 0
+		},
+		"style": {
+			"type": "string",
+			"default": "geolonia/basic"
+		},
+		"pitch": {
+			"type": "number",
+			"default": 0
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css"
