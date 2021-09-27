@@ -31,6 +31,10 @@
 			"type": "number",
 			"default": 0
 		},
+		"bearing": {
+			"type": "number",
+			"default": 0
+		},
 		"description": {
 			"type": "string",
 			"default": ""

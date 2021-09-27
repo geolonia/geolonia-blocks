@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save(props) {
-	const { lat, lng, zoom, style, pitch, description } = props.attributes;
+	const { lat, lng, zoom, style, pitch, bearing, description } = props.attributes;
 
 	return (
 		<div {...useBlockProps.save()}>
@@ -13,6 +13,7 @@ export default function save(props) {
 				data-lng={lng}
 				data-zoom={zoom}
 				data-pitch={pitch}
+				data-bearing={bearing}
 			>{description}</div>
 		</div>
 	);
