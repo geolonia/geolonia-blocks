@@ -1,41 +1,34 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
 import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import { useRef, useEffect } from '@wordpress/element';
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @return {WPElement} Element to render.
- */
 export default function Edit() {
+
+	const mapNode = useRef(null);
+
+	useEffect(() => {
+    if (!mapNode.current) {
+      return
+    }
+
+		const { geolonia } = window;
+    new geolonia.Map({
+      container: mapNode.current,
+    });
+
+  }, [mapNode])
+
 	return (
-		<p {...useBlockProps()}>
-			{__(
-				'Geolonia Map Blocks – hello from the editor!',
-				'geolonia-map-blocks'
-			)}
-		</p>
+		<div {...useBlockProps()}>
+			<div
+				ref={mapNode}
+				className="geolonia"
+				data-lat="34.5752847"
+				data-lng="135.4807895"
+				data-zoom="18.57"
+				data-style="geolonia/basic"
+			>株式会社Geolonia</div>
+		</div>
 	);
 }

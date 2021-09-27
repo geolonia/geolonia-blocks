@@ -1,34 +1,17 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
 import { useBlockProps } from '@wordpress/block-editor';
 
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
- */
 export default function save() {
+
 	return (
-		<p {...useBlockProps.save()}>
-			{__(
-				'Geolonia Map Blocks – hello from the saved content!',
-				'geolonia-map-blocks'
-			)}
-		</p>
+		<div {...useBlockProps.save()}>
+			<div
+				className="geolonia"
+				data-lat="34.5752847"
+				data-lng="135.4807895"
+				data-zoom="18.57"
+				data-style="geolonia/basic"
+			>株式会社Geolonia</div>
+		</div>
 	);
 }

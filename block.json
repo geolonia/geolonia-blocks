@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "geolonia/geolonia-map-blocks",
+	"name": "geolonia/map-blocks",
 	"version": "0.1.0",
 	"title": "Geolonia Map Blocks",
 	"category": "widgets",
