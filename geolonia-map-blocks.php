@@ -20,7 +20,21 @@
  *
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/writing-your-first-block-type/
  */
-function create_block_geolonia_map_blocks_block_init() {
+function geolonia_map_blocks_block_init() {
 	register_block_type( __DIR__ );
 }
-add_action( 'init', 'create_block_geolonia_map_blocks_block_init' );
+add_action( 'init', 'geolonia_map_blocks_block_init' );
+
+function geolonia_map_blocks_enqueue_scripts() {
+  wp_enqueue_script(
+    'geolonia-embed-api',
+    'https://cdn.geolonia.com/v1/embed?geolonia-api-key=YOUR-API-KEY',
+    array(),
+    false,
+    true
+  );
+}
+
+add_action( 'wp_enqueue_scripts', 'geolonia_map_blocks_enqueue_scripts');
+add_action( 'admin_enqueue_scripts', 'geolonia_map_blocks_enqueue_scripts');
+
