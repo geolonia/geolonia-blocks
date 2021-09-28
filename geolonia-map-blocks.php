@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Geolonia Blocks
- * Description:       Example block written with ESNext standard and JSX support – build step required.
+ * Description:       This is an official Geolonia plugin that allows you to display inexpensive, easy to redesign, and fast maps in WordPress.
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            geoloniamaps, naoki0h
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       geolonia-blocks

@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { useRef, useEffect, useState } from '@wordpress/element';
-import './editor.scss';
 
 function getLang() {
   const lang = (
