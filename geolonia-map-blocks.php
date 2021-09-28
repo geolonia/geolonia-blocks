@@ -244,24 +244,31 @@ class Geolonia_Map {
 			/*
 			 * API key obtaining method.
 			 */
-			$maps_api_for_web_link = sprintf(
-				'%1$s<a href="https://app.geolonia.com/?#/signup">%2$s</a>',
-				esc_html__( 'Create ', 'geolonia-blocks' ),
-				esc_html__( 'Geolonia Maps API Key' )
+			$maps_signup_for_web_link = sprintf(
+				'%1$s<a href="https://app.geolonia.com/?#/signup" target="_blank" rel="noopener noreferrer">%2$s</a>',
+				esc_html__( 'Sign up ', 'geolonia-blocks' ),
+				esc_html__( 'Geolonia Maps' )
 			);
 
-			// $get_key_text    = esc_html__( 'Click "GET A KEY" button', 'geolonia-blocks' );
-			// $continue_text   = esc_html__( 'Click "CONTINUE" button', 'geolonia-blocks' );
-			// $set_domain_text = esc_html__( 'Add your domain.', 'geolonia-blocks' );
+			$maps_api_key_for_web_link = sprintf(
+				'%1$s<a href="https://app.geolonia.com/#/api-keys" target="_blank" rel="noopener noreferrer">%2$s</a>',
+				esc_html__( 'Go to  ', 'geolonia-blocks' ),
+				esc_html__( '[Maps] > [Manage API keys]' )
+			);
+
+			$maps_document_for_web_link = sprintf(
+				'%1$s<a href="https://docs.geolonia.com/tutorial/002/" target="_blank" rel="noopener noreferrer">%2$s</a>',
+				esc_html__( 'For more detail, please read the ', 'geolonia-blocks' ),
+				esc_html__( 'document (Japanese only)' )
+			);
 
 			$html  = '';
 			$html .= '<h2>' . esc_html__( 'How to get API key?', 'geolonia-blocks' ) . '</h2>';
 			$html .= '<ol>';
-			$html .= '<li>' . $maps_api_for_web_link . '</li>';
-			// $html .= '<li>' . $get_key_text . '<p><img style="width: 80%;" src="' . plugin_dir_url( __FILE__ ) . 'images/001.png"></p></li>';
-			// $html .= '<li>' . $continue_text . '<p><img style="width: 80%;" src="' . plugin_dir_url( __FILE__ ) . 'images/002.png"></p></li>';
-			// $html .= '<li>' . $continue_text . '<p><img style="width: 80%;" src="' . plugin_dir_url( __FILE__ ) . 'images/003.png"></p></li>';
-			// $html .= '<li>' . $set_domain_text . '<p><img style="width: 80%;" src="' . plugin_dir_url( __FILE__ ) . 'images/004.png"></p></li>';
+			$html .= '<li>' . $maps_signup_for_web_link . '</li>';
+			$html .= '<li>' . $maps_api_key_for_web_link . '</li>';
+			$html .= '<li>' . esc_html__( 'Then Click [New] button', 'geolonia-blocks' ) . '</li>';
+			$html .= '<li>' . $maps_document_for_web_link . '</li>';
 			$html .= '</ol>';
 
 			echo $html;
