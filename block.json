@@ -1,15 +1,15 @@
 {
 	"apiVersion": 2,
-	"name": "geolonia/map-blocks",
+	"name": "geolonia/map",
 	"version": "0.1.0",
-	"title": "Geolonia Map Blocks",
+	"title": "Geolonia Maps",
 	"category": "widgets",
 	"icon": "location",
 	"description": "Add a simple map.",
 	"supports": {
 		"html": false
 	},
-	"textdomain": "geolonia-map-blocks",
+	"textdomain": "geolonia-blocks",
 	"attributes": {
 		"lat": {
 			"type": "number",

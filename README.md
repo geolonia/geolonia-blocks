@@ -1,4 +1,4 @@
-# geolonia-map-blocks
+# geolonia-blocks
 
 Geolonia の地図を表示する WordPress プラグインです。
 
@@ -14,8 +14,8 @@ First of all, please clone this repository from Github.
 まず、このリポジトリをクローンする。
 
 ```bash
-$ git@github.com:geolonia/geolonia-map-blocks.git
-$ cd geolonia-map-blocks
+$ git@github.com:geolonia/geolonia-blocks.git
+$ cd geolonia-blocks
 $ npm install
 $ npm start
 ```

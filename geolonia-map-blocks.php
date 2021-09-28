@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Geolonia Map Blocks
+ * Plugin Name:       Geolonia Blocks
  * Description:       Example block written with ESNext standard and JSX support – build step required.
  * Requires at least: 5.8
  * Requires PHP:      7.0
@@ -8,7 +8,7 @@
  * Author:            The WordPress Contributors
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       geolonia-map-blocks
+ * Text Domain:       geolonia-blocks
  */
 
 new Geolonia_Map();
@@ -78,7 +78,7 @@ class Geolonia_Map {
 	public function load_textdomain() {
 
 		load_plugin_textdomain(
-			'geolonia-map-blocks',
+			'geolonia-blocks',
 			false,
 			plugin_basename( dirname( __FILE__ ) ) . '/languages'
 		);
@@ -121,7 +121,7 @@ class Geolonia_Map {
 				add_settings_error(
 					'geolonia_map_blocks_settings',
 					'api_key_field',
-					esc_html__( 'Check your API key.', 'geolonia-map-blocks' ),
+					esc_html__( 'Check your API key.', 'geolonia-blocks' ),
 					'error'
 				);
 				$new_input['api_key_field'] = '';
@@ -132,7 +132,7 @@ class Geolonia_Map {
 			add_settings_error(
 				'geolonia_map_blocks_settings',
 				'api_key_field',
-				esc_html__( 'Check your API key.', 'geolonia-map-blocks' ),
+				esc_html__( 'Check your API key.', 'geolonia-blocks' ),
 				'error'
 			);
 
@@ -153,11 +153,11 @@ class Geolonia_Map {
 		$class = 'notice notice-warning is-dismissible';
 		$link  = sprintf(
 			'<a href="%1$s">%2$s</a>',
-			admin_url( 'options-general.php?page=geolonia-map-blocks' ),
-			esc_html__( 'Settings page', 'geolonia-map-blocks' )
+			admin_url( 'options-general.php?page=geolonia-blocks' ),
+			esc_html__( 'Settings page', 'geolonia-blocks' )
 		);
 		$message = sprintf(
-			__( 'Geolonia Maps, you need an API key. Please move to the %1$s.', 'geolonia-map-blocks' ),
+			__( 'Geolonia Maps, you need an API key. Please move to the %1$s.', 'geolonia-blocks' ),
 			$link
 		);
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message );
@@ -173,7 +173,7 @@ class Geolonia_Map {
 			'Geolonia Map',
 			'Geolonia Map',
 			'manage_options',
-			'geolonia-map-blocks',
+			'geolonia-blocks',
 			array( $this, 'geolonia_map_blocks_options_page' )
 		);
 
@@ -192,14 +192,14 @@ class Geolonia_Map {
 
 		add_settings_section(
 			'geolonia_map_blocks_settings_section',
-			esc_html__( 'Geolonia Map settings', 'geolonia-map-blocks' ),
+			esc_html__( 'Geolonia Map settings', 'geolonia-blocks' ),
 			array( $this, 'geolonia_map_blocks_settings_section_callback' ),
 			'geoloniamappage'
 		);
 
 		add_settings_field(
 			'api_key_field',
-			esc_html__( 'Set API Key', 'geolonia-map-blocks' ),
+			esc_html__( 'Set API Key', 'geolonia-blocks' ),
 			array( $this, 'api_key_field_render' ),
 			'geoloniamappage',
 			'geolonia_map_blocks_settings_section'
@@ -212,7 +212,7 @@ class Geolonia_Map {
 	 */
 	public function geolonia_map_blocks_settings_section_callback() {
 
-		echo esc_html__( 'Set your Geolonia Maps API key.', 'geolonia-map-blocks' );
+		echo esc_html__( 'Set your Geolonia Maps API key.', 'geolonia-blocks' );
 
 	}
 
@@ -246,16 +246,16 @@ class Geolonia_Map {
 			 */
 			$maps_api_for_web_link = sprintf(
 				'%1$s<a href="https://app.geolonia.com/?#/signup">%2$s</a>',
-				esc_html__( 'Create ', 'geolonia-map-blocks' ),
+				esc_html__( 'Create ', 'geolonia-blocks' ),
 				esc_html__( 'Geolonia Maps API Key' )
 			);
 
-			// $get_key_text    = esc_html__( 'Click "GET A KEY" button', 'geolonia-map-blocks' );
-			// $continue_text   = esc_html__( 'Click "CONTINUE" button', 'geolonia-map-blocks' );
-			// $set_domain_text = esc_html__( 'Add your domain.', 'geolonia-map-blocks' );
+			// $get_key_text    = esc_html__( 'Click "GET A KEY" button', 'geolonia-blocks' );
+			// $continue_text   = esc_html__( 'Click "CONTINUE" button', 'geolonia-blocks' );
+			// $set_domain_text = esc_html__( 'Add your domain.', 'geolonia-blocks' );
 
 			$html  = '';
-			$html .= '<h2>' . esc_html__( 'How to get API key?', 'geolonia-map-blocks' ) . '</h2>';
+			$html .= '<h2>' . esc_html__( 'How to get API key?', 'geolonia-blocks' ) . '</h2>';
 			$html .= '<ol>';
 			$html .= '<li>' . $maps_api_for_web_link . '</li>';
 			// $html .= '<li>' . $get_key_text . '<p><img style="width: 80%;" src="' . plugin_dir_url( __FILE__ ) . 'images/001.png"></p></li>';

@@ -71,10 +71,10 @@ export default function Edit({ attributes, setAttributes }) {
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={__('Block Settings', 'geolonia-map-blocks')}
+					title={__('Block Settings', 'geolonia-blocks')}
 				>
 					<SelectControl
-						label={__('Map Style', 'geolonia-map-blocks')}
+						label={__('Map Style', 'geolonia-blocks')}
 						value={style}
 						onChange={(value) => {
 							setAttributes({ style: value })
@@ -84,32 +84,32 @@ export default function Edit({ attributes, setAttributes }) {
 						options={[
 							{
 								value: 'geolonia/basic',
-								label: __('Basic', 'geolonia-map-blocks'),
+								label: __('Basic', 'geolonia-blocks'),
 							},
 							{
 								value: 'geolonia/gsi',
-								label: __('GSI', 'geolonia-map-blocks'),
+								label: __('GSI', 'geolonia-blocks'),
 							},
 							{
 								value: 'geolonia/homework',
-								label: __('Homework', 'geolonia-map-blocks'),
+								label: __('Homework', 'geolonia-blocks'),
 							},
 							{
 								value: 'geolonia/midnight',
-								label: __('Midnight', 'geolonia-map-blocks'),
+								label: __('Midnight', 'geolonia-blocks'),
 							},
 							{
 								value: 'geolonia/notebook',
-								label: __('Notebook', 'geolonia-map-blocks'),
+								label: __('Notebook', 'geolonia-blocks'),
 							},
 							{
 								value: 'geolonia/red-planet',
-								label: __('Red Planet', 'geolonia-map-blocks'),
+								label: __('Red Planet', 'geolonia-blocks'),
 							}
 						]}
 					/>
 					<TextControl
-						label={__('Text in Popup', 'geolonia-map-blocks')}
+						label={__('Text in Popup', 'geolonia-blocks')}
 						value={description}
 						onChange={(value) =>
 							setAttributes({ description: value })
