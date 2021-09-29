@@ -27,6 +27,10 @@
 			"type": "string",
 			"default": "geolonia/basic"
 		},
+		"customStyle": {
+			"type": "string",
+			"default": ""
+		},
 		"pitch": {
 			"type": "number",
 			"default": 0
