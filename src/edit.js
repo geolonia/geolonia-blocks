@@ -4,22 +4,22 @@ import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { useRef, useEffect, useState } from '@wordpress/element';
 
 function getLang() {
-	const lang = (
-		window.navigator.languages &&
-		window.navigator.languages[0] &&
-		window.navigator.languages[0].toLowerCase()
-	) || window.navigator.language.toLowerCase();
+  const lang = (
+    window.navigator.languages &&
+    window.navigator.languages[0] &&
+    window.navigator.languages[0].toLowerCase()
+  ) || window.navigator.language.toLowerCase();
 
-	if (lang === 'ja' || lang === 'ja-jp') {
-		return 'ja';
-	} else {
-		return 'en';
-	}
+  if (lang === 'ja' || lang === 'ja-jp') {
+    return 'ja';
+  } else {
+    return 'en';
+  }
 }
 
 export default function Edit({ attributes, setAttributes }) {
 	const { lat, lng, zoom, style, customStyle, pitch, bearing, description } = attributes;
-	const [mapObject, setMapObject] = useState();
+	const [ mapObject, setMapObject ] = useState();
 	const mapNode = useRef(null);
 
 	useEffect(() => {
@@ -42,26 +42,26 @@ export default function Edit({ attributes, setAttributes }) {
 			marker = new window.geolonia.Marker({ color: markerColor }).setLngLat([lng, lat]).addTo(map);
 		}
 
-		map.on('load', function () {
+		map.on('load', function() {
 			setMapObject(map);
 		})
 
-		map.on('move', function () {
+		map.on('move', function() {
 			const center = map.getCenter().toArray();
 			marker.setLngLat(center);
 		})
 
-		map.on('moveend', function () {
+		map.on('moveend', function() {
 			const center = map.getCenter().toArray();
 			const zoom = map.getZoom().toFixed(2);
 			const pitch = map.getPitch();
 			const bearing = map.getBearing();
 
-			setAttributes({ lng: center[0] });
-			setAttributes({ lat: center[1] });
-			setAttributes({ zoom: parseFloat(zoom) });
-			setAttributes({ pitch });
-			setAttributes({ bearing });
+			setAttributes({lng: center[0]});
+			setAttributes({lat: center[1]});
+			setAttributes({zoom: parseFloat(zoom)});
+			setAttributes({pitch});
+			setAttributes({bearing});
 		})
 
 	}, [mapNode, description])
@@ -78,7 +78,11 @@ export default function Edit({ attributes, setAttributes }) {
 						onChange={(value) => {
 							setAttributes({ style: value })
 							const lang = getLang();
-							mapObject.setStyle(`https://cdn.geolonia.com/style/${value}/${lang}.json`);
+							if (value === 'custom') {
+								mapObject.setStyle(customStyle);
+							} else {
+								mapObject.setStyle(`https://cdn.geolonia.com/style/${value}/${lang}.json`);
+							}
 						}}
 						options={[
 							{
@@ -104,17 +108,23 @@ export default function Edit({ attributes, setAttributes }) {
 							{
 								value: 'geolonia/red-planet',
 								label: __('Red Planet', 'geolonia-blocks'),
+							},
+							{
+								value: 'custom',
+								label: __('Custom', 'geolonia-blocks'),
 							}
 						]}
 					/>
-					<TextControl
-						label={__('Please enter custom style.json URL', 'geolonia-blocks')} //TODO: style-templateへのリンクを追加。
-						value={customStyle}
-						onChange={(value) => {
-							mapObject.setStyle(value);
-							setAttributes({ customStyle: value });
-						}}
-					/>
+					{
+						style === 'custom' && <TextControl
+							label={__('Please enter custom style.json URL', 'geolonia-blocks')} //TODO: style-templateへのリンクを追加。
+							value={customStyle}
+							onChange={(value) => {
+								mapObject.setStyle(value);
+								setAttributes({ customStyle: value });
+							}}
+						/>
+					}
 					<TextControl
 						label={__('Text in Popup', 'geolonia-blocks')}
 						value={description}
