@@ -18,7 +18,7 @@ function getLang() {
 }
 
 export default function Edit({ attributes, setAttributes }) {
-	const { lat, lng, zoom, style, pitch, bearing, description } = attributes;
+	const { lat, lng, zoom, style, customStyle, pitch, bearing, description } = attributes;
 	const [ mapObject, setMapObject ] = useState();
 	const mapNode = useRef(null);
 
@@ -78,7 +78,11 @@ export default function Edit({ attributes, setAttributes }) {
 						onChange={(value) => {
 							setAttributes({ style: value })
 							const lang = getLang();
-							mapObject.setStyle(`https://cdn.geolonia.com/style/${value}/${lang}.json`);
+							if (value === 'custom') {
+								mapObject.setStyle(customStyle);
+							} else {
+								mapObject.setStyle(`https://cdn.geolonia.com/style/${value}/${lang}.json`);
+							}
 						}}
 						options={[
 							{
@@ -104,9 +108,23 @@ export default function Edit({ attributes, setAttributes }) {
 							{
 								value: 'geolonia/red-planet',
 								label: __('Red Planet', 'geolonia-blocks'),
+							},
+							{
+								value: 'custom',
+								label: __('Custom', 'geolonia-blocks'),
 							}
 						]}
 					/>
+					{
+						style === 'custom' && <TextControl
+							label={__('Please enter custom style.json URL', 'geolonia-blocks')} //TODO: style-templateへのリンクを追加。
+							value={customStyle}
+							onChange={(value) => {
+								mapObject.setStyle(value);
+								setAttributes({ customStyle: value });
+							}}
+						/>
+					}
 					<TextControl
 						label={__('Text in Popup', 'geolonia-blocks')}
 						value={description}
@@ -123,7 +141,7 @@ export default function Edit({ attributes, setAttributes }) {
 					data-lat={lat}
 					data-lng={lng}
 					data-zoom={zoom}
-					data-style={style}
+					data-style={customStyle ? customStyle : style}
 					data-pitch={pitch}
 					data-bearing={bearing}
 					data-marker="off"
