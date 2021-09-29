@@ -78,7 +78,7 @@ export default function Edit({ attributes, setAttributes }) {
 						onChange={(value) => {
 							setAttributes({ style: value })
 							const lang = getLang();
-							if (value !== 'custom') {
+							if (value && value !== 'custom') {
 								mapObject.setStyle(`https://cdn.geolonia.com/style/${value}/${lang}.json`);
 							}
 						}}
@@ -139,7 +139,7 @@ export default function Edit({ attributes, setAttributes }) {
 					data-lat={lat}
 					data-lng={lng}
 					data-zoom={zoom}
-					data-style={style}
+					data-style={customStyle ? customStyle : style}
 					data-pitch={pitch}
 					data-bearing={bearing}
 					data-marker="off"
