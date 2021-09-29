@@ -99,13 +99,13 @@ class Geolonia_Map {
 	}
 
 	/**
-	 * Sanitize api_key_field.
+	 * Validate api_key_field.
 	 *
 	 * @param string $input API key strings.
 	 *
 	 * @return array
 	 */
-	public function data_sanitize( $input ) {
+	public function data_validate( $input ) {
 
 		$new_input = array();
 		$api_key = isset( $input['api_key_field'] ) ? $input['api_key_field'] : '';
@@ -114,14 +114,14 @@ class Geolonia_Map {
 
 			if ( strlen( $api_key ) === mb_strlen( $api_key ) ) {
 
-				$new_input['api_key_field'] = esc_attr( $api_key );
+				$new_input['api_key_field'] = $api_key;
 
 			} else {
 
 				add_settings_error(
 					'geolonia_map_blocks_settings',
 					'api_key_field',
-					esc_html__( 'Check your API key.', 'geolonia-blocks' ),
+					esc_html__( 'Your API Key is invalid.', 'geolonia-blocks' ),
 					'error'
 				);
 				$new_input['api_key_field'] = '';
@@ -132,7 +132,7 @@ class Geolonia_Map {
 			add_settings_error(
 				'geolonia_map_blocks_settings',
 				'api_key_field',
-				esc_html__( 'Check your API key.', 'geolonia-blocks' ),
+				esc_html__( 'Your API Key is invalid.', 'geolonia-blocks' ),
 				'error'
 			);
 
@@ -157,7 +157,7 @@ class Geolonia_Map {
 			esc_html__( 'Settings page', 'geolonia-blocks' )
 		);
 		$message = sprintf(
-			__( 'Geolonia Maps, you need an API key. Please move to the %1$s.', 'geolonia-blocks' ),
+			__( 'Geolonia Maps, you need an API key. Please create it at the %1$s.', 'geolonia-blocks' ),
 			$link
 		);
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message );
@@ -187,7 +187,7 @@ class Geolonia_Map {
 		register_setting(
 			'geoloniamappage',
 			'geolonia_map_blocks_settings',
-			array( $this, 'data_sanitize' )
+			array( $this, 'data_validate' )
 		);
 
 		add_settings_section(
